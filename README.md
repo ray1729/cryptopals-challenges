@@ -1,2 +1,3 @@
 # cryptopals-challenges
-Cryptopals challenges attempted in go
+
+[Cryptopals challenges](https://cryptopals.com/) attempted in go.
