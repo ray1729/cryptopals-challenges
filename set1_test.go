@@ -50,3 +50,12 @@ func TestChallenge5(t *testing.T) {
         t.Errorf("repeating_key_xor() failed")
     }
 }
+
+func TestHammingDistance(t *testing.T) {
+    s1 := "this is a test"
+    s2 := "wokka wokka!!!"
+    expected := 37
+    if hamming_distance(s1, s2) != expected {
+        t.Errorf("hamming_distance(%s, %s) != %d", s1, s2, expected)
+    }
+}

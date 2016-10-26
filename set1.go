@@ -89,7 +89,7 @@ var EnglishLetterFrequency = map[rune]float64{
 func score(s string) float64 {
     frequencies := make(map[rune]int)
     n := 0
-    for _, c := range(s) {
+    for _, c := range s {
         n++
         frequencies[unicode.ToLower(c)]++
     }
@@ -155,4 +155,29 @@ func repeating_key_xor(s, k string) string {
         res[i] = s_bytes[i]^k_bytes[i % k_len]
     }
     return hex.EncodeToString(res)
+}
+
+
+// From "The Go Programming Language", p45
+var pc [256]byte
+
+func init() {
+    for i := range pc {
+        pc[i] = pc[i/2] + byte(i&1)
+    }
+}
+
+func hamming_distance(s, t string) int {
+    s_bytes := []byte(s)
+    s_len := len(s_bytes)
+    t_bytes := []byte(t)
+    t_len := len(t_bytes)
+    if s_len != t_len {
+        log.Fatal("hamming_distance not implemented for strings of differing length")
+    }
+    var distance int
+    for i := 0; i < s_len; i++ {
+        distance += int(pc[s_bytes[i]^t_bytes[i]])
+    }
+    return distance
 }
